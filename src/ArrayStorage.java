@@ -1,42 +1,49 @@
-import java.util.ArrayList;
+
 import java.util.Arrays;
-import java.util.List;
+
 
 /**
  * Array based storage for Resumes
  */
 public class ArrayStorage {
+    private int size = 0;
     Resume[] storage = new Resume[10000];
 
     void clear() {
-        for (int i=0; i<size(); i++){
-            storage[i]=null;
+        for (int i = 0; i < size; i++) {
+            storage[i] = null;
         }
+        size = 0;
     }
 
     void save(Resume r) {
-       // System.out.println(size());
-       storage[size()] = r;
+        if (size == storage.length)
+            System.out.println("Память заполнена!");
+        else {
+            storage[size] = r;
+            size++;
+        }
     }
 
     Resume get(String uuid) {
-        Resume r=null;
-        for (int i=0; i<size(); i++){
-            if (storage[i].toString().equals(uuid))
-                r=storage[i];
+        int i;
+        for (i = 0; i < size; i++) {
+            if (storage[i].uuid.equals(uuid))
+                break;
         }
-        return r;
-        }
-    void delete(String uuid) {
+        return storage[i];
+    }
 
-        for (int i=0; i<size(); i++){
-            if (storage[i].toString().equals(uuid))
-                for (int j=i; j<size(); j++){
-                storage[j]=storage[j+1];
-            if (j==size()-1){storage[j]=null; break;}
+    void delete(String uuid) {
+        int i;
+        for (i = 0; i < size; i++) {
+            if (storage[i].uuid.equals(uuid)) {
+                storage[i] = storage[size - 1];
+                storage[size - 1] = null;
             }
-            //storage[i+1]=
+            break;
         }
+        size--;
     }
 
     /**
@@ -44,21 +51,13 @@ public class ArrayStorage {
      */
     Resume[] getAll() {
 
-     //  if (size()==0) return null;
-       // else
-      //      if (size()==1) return storage[0];
-      //  else
-       return Arrays.copyOfRange(storage, 0, size());
+        return Arrays.copyOfRange(storage, 0, size);
 
     }
 
     int size() {
 
-        int m=0;
-        for (int i=0; i<10000; i++){
-            m=i;
-            if (storage[i]==null) break;
-        }
-return m;
+        return size;
 
-}}
+    }
+}

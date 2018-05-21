@@ -14,7 +14,7 @@ public class MainTestArrayStorage {
         Resume r3 = new Resume();
         r3.uuid = "uuid3";
 
-       // System.out.println(ARRAY_STORAGE.size());
+        // System.out.println(ARRAY_STORAGE.size());
         ARRAY_STORAGE.save(r1);
         ARRAY_STORAGE.save(r2);
         ARRAY_STORAGE.save(r3);
@@ -29,9 +29,9 @@ public class MainTestArrayStorage {
         printAll();
         ARRAY_STORAGE.clear();
 
-              printAll();
+        printAll();
 
-       System.out.println("Size: " + ARRAY_STORAGE.size());
+        System.out.println("Size: " + ARRAY_STORAGE.size());
     }
 
     static void printAll() {
