@@ -8,7 +8,7 @@ public class ArrayStorage {
     Resume[] storage = new Resume[10000];
 
     void clear() {
-        Arrays.fill(storage, null);
+        Arrays.fill(storage, 0, size, null);
         size = 0;
     }
 
@@ -25,9 +25,10 @@ public class ArrayStorage {
         int i;
         boolean g = false;
         for (i = 0; i < size; i++) {
-            if (storage[i].uuid.equals(uuid))
+            if (storage[i].uuid.equals(uuid)) {
                 g = true;
-            break;
+                break;
+            }
         }
         if (g) {
             return storage[i];
@@ -35,8 +36,7 @@ public class ArrayStorage {
     }
 
     void delete(String uuid) {
-        int i;
-        for (i = 0; i < size; i++) {
+        for (int i = 0; i < size; i++) {
             if (storage[i].uuid.equals(uuid)) {
                 storage[i] = storage[size - 1];
                 storage[size - 1] = null;
